@@ -2,8 +2,9 @@ import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import { eq, and, gt } from "drizzle-orm";
 
-import { db } from "../db/index.js";
-import { user, session } from "../db/schema.js";
+import { db } from "../../db/index.js";
+import { user, session } from "../../db/schema.js";
+import { sendOtp } from "../sms-handler/otp.js";
 
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;
@@ -184,7 +185,6 @@ export class AuthenticationController {
             // TODO:
             // Send OTP using Twilio / MSG91 / AWS SNS /
             // whatever SMS provider you choose.
-
             console.log(`OTP for ${normalizedPhone}: ${otp}`);
 
             return res.status(201).json({
