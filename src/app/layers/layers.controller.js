@@ -2,7 +2,7 @@ import {
     fetchLayers,
     getLayerMetadata,
     getLayerFilePath,
-} from "./service.js";
+} from "./layers.service.js";
 
 export const getLayers = (req, res) => {
     try {
