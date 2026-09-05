@@ -1,7 +1,6 @@
 import { createServer } from 'node:http'
 import { createExpressApplication } from './app/app.js' 
 import 'dotenv/config'
-import { sendOtp } from './app/sms-handler/otp.js';
 
 async function main(){
     try {

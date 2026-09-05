@@ -1,7 +1,7 @@
 import {
     fetchLandslides,
     fetchLandslideById,
-} from "./service.js";
+} from "./landslides.service.js";
 
 export const getLandslides = async (req, res) => {
     try {

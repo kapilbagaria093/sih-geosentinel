@@ -1,7 +1,7 @@
 import express from 'express'
-import { authRouter } from './auth/routes.js';
-import landslideRouter from './landslides/routes.js';
-import layerRouter from './layers/routes.js';
+import { authRouter } from './auth/auth.routes.js';
+import landslideRouter from './landslides/landslides.routes.js';
+import layerRouter from './layers/layers.routes.js';
 
 export function createExpressApplication() {
     const app = express();

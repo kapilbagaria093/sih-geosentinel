@@ -4,7 +4,7 @@ import { eq, and, gt } from "drizzle-orm";
 
 import { db } from "../../db/index.js";
 import { user, session } from "../../db/schema.js";
-import { sendOtp } from "../sms-handler/otp.js";
+import { sendOtp } from "../sms-handler/sh.otp.js";
 
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;

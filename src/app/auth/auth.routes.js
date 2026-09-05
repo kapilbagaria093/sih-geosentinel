@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { AuthenticationController } from "./controller.js";
-import { restrictToAuthenticatedUsers } from "../middlewares/attachUser.js";
+import { AuthenticationController } from "./auth.controller.js";
+import { restrictToAuthenticatedUsers } from "../middlewares/middlewares.attachUser.js";
 
 export const authRouter = Router();
 

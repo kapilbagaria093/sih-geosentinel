@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
     getLandslides,
     getLandslideById,
-} from "./controller.js";
+} from "./landslides.controller.js";
 
 const landslideRouter = Router();
 

@@ -4,7 +4,7 @@ import {
     getLayers,
     getLayer,
     getLayerFile,
-} from "./controller.js";
+} from "./layers.controller.js";
 
 const layerRouter = Router();
 
