@@ -5,6 +5,7 @@ import {
   boolean,
   index,
   doublePrecision,
+  integer,
 } from "drizzle-orm/pg-core";
 
 export const user = pgTable(
@@ -70,4 +71,85 @@ export const session = pgTable(
   (table) => [
     index("session_user_id_idx").on(table.userId),
   ]
+);
+
+export const report = pgTable(
+  "report",
+  {
+    id: text("id").primaryKey(),
+
+    userId: text("user_id")
+      .notNull()
+      .references(() => user.id, {
+        onDelete: "cascade",
+      }),
+
+    severity: text("severity").notNull(),
+
+    description: text("description").notNull(),
+
+    latitude: doublePrecision("latitude").notNull(),
+
+    longitude: doublePrecision("longitude").notNull(),
+
+    altitude: doublePrecision("altitude"),
+
+    address: text("address"),
+
+    reportedAt: timestamp("reported_at", {
+      withTimezone: true,
+    }).notNull(),
+
+    createdAt: timestamp("created_at", {
+      withTimezone: true,
+    })
+      .notNull()
+      .defaultNow(),
+
+    updatedAt: timestamp("updated_at", {
+      withTimezone: true,
+    })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    index("report_user_id_idx").on(table.userId),
+    index("report_reported_at_idx").on(table.reportedAt),
+  ],
+);
+
+export const reportMedia = pgTable(
+  "report_media",
+  {
+    id: text("id").primaryKey(),
+
+    reportId: text("report_id")
+      .notNull()
+      .references(() => report.id, {
+        onDelete: "cascade",
+      }),
+
+    kind: text("kind").notNull(),
+
+    fileName: text("file_name").notNull(),
+
+    mimeType: text("mime_type").notNull(),
+
+    publicId: text("public_id").notNull(),
+
+    resourceType: text("resource_type").notNull(),
+
+    secureUrl: text("secure_url").notNull(),
+
+    fileSize: integer("file_size"),
+
+    createdAt: timestamp("created_at", {
+      withTimezone: true,
+    })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    index("report_media_report_id_idx").on(table.reportId),
+  ],
 );
