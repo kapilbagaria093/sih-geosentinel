@@ -1,6 +1,7 @@
 import express from 'express'
 import { authRouter } from './auth/routes.js';
 import landslideRouter from './landslides/routes.js';
+import layerRouter from './layers/routes.js';
 
 export function createExpressApplication() {
     const app = express();
@@ -15,6 +16,7 @@ export function createExpressApplication() {
 
     app.use('/auth', authRouter);
     app.use('/landslides', landslideRouter)
+    app.use('/layers', layerRouter)
 
     return app
 }

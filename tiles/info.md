@@ -1,0 +1,1 @@
+Tiles not required right now, as implementation for sikkim (clipped data) in itself is very small files ~20mb

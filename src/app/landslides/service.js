@@ -14,9 +14,6 @@ const csvPath = path.resolve(
 
 const loadLandslides = async () => {
     const file = await fs.readFile(csvPath, "utf-8");
-    
-    console.log(csvPath)
-    console.log(file);
 
     return parse(file, {
         columns: true,
