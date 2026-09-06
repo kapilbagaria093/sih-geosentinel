@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import { authRouter } from './auth/auth.routes.js';
 import landslideRouter from './landslides/landslides.routes.js';
 import layerRouter from './layers/layers.routes.js';
@@ -8,6 +9,7 @@ export function createExpressApplication() {
     const app = express();
 
     // middlewares
+    app.use(cors());
     app.use(express.json())
 
     // routes
