@@ -1,0 +1,7 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GeoSentinel">
+  <rect width="64" height="64" rx="12" fill="#0B2A4A"/>
+  <path d="M8 44 L22 26 L32 36 L40 27 L58 44 L58 50 L8 50 Z" fill="#12395F"/>
+  <path d="M8 46 L20 32 L30 40 L38 33 L58 46 L58 50 L8 50 Z" fill="#0E3355"/>
+  <circle cx="45" cy="17" r="10" fill="#C22B2B"/>
+  <path d="M45 11.5 V17 L48.5 20" stroke="#F4F7FA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

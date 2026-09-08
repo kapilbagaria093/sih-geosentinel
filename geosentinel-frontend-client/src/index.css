@@ -1,0 +1,217 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   GeoSentinel design tokens
+   Three themes, switched via [data-theme] on <html>:
+     light (default) | dark | hc (high contrast)
+   --------------------------------------------------------------- */
+
+:root {
+  --color-navy: #0b2a4a;
+  --color-navy-deep: #071c33;
+  --color-navy-tint: #e8eef4;
+
+  --color-bg: #f2f4f6;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-border: #d7dee4;
+  --color-border-strong: #b7c2cc;
+
+  --color-text: #16232e;
+  --color-text-muted: #56636e;
+  --color-text-on-navy: #f4f7fa;
+
+  --color-accent: #0b5fa5;
+  --color-accent-hover: #094a82;
+  --color-focus: #0b5fa5;
+
+  --color-risk-low: #1e8e3e;
+  --color-risk-low-bg: #e6f4ea;
+  --color-risk-moderate: #b4720a;
+  --color-risk-moderate-bg: #fbf0dc;
+  --color-risk-high: #b3261e;
+  --color-risk-high-bg: #fbe6e4;
+
+  --stripe-saffron: #ff9933;
+  --stripe-white: #ffffff;
+  --stripe-green: #128807;
+
+  --shadow-card: 0 1px 2px rgba(15, 30, 45, 0.06), 0 1px 8px rgba(15, 30, 45, 0.05);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --color-navy: #0d223a;
+  --color-navy-deep: #060f1c;
+  --color-navy-tint: #16273b;
+
+  --color-bg: #0a121c;
+  --color-surface: #101c29;
+  --color-surface-raised: #142334;
+  --color-border: #263a4d;
+  --color-border-strong: #354e64;
+
+  --color-text: #e7edf2;
+  --color-text-muted: #93a5b5;
+  --color-text-on-navy: #eef3f7;
+
+  --color-accent: #4fa3e3;
+  --color-accent-hover: #78b9ec;
+  --color-focus: #4fa3e3;
+
+  --color-risk-low: #33b76a;
+  --color-risk-low-bg: #123321;
+  --color-risk-moderate: #e3a53a;
+  --color-risk-moderate-bg: #3a2c10;
+  --color-risk-high: #ea5a53;
+  --color-risk-high-bg: #3a1512;
+
+  --stripe-saffron: #ff9933;
+  --stripe-white: #cfd8de;
+  --stripe-green: #22a316;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 10px rgba(0, 0, 0, 0.3);
+  color-scheme: dark;
+}
+
+[data-theme="hc"] {
+  --color-navy: #000000;
+  --color-navy-deep: #000000;
+  --color-navy-tint: #000000;
+
+  --color-bg: #000000;
+  --color-surface: #000000;
+  --color-surface-raised: #000000;
+  --color-border: #ffffff;
+  --color-border-strong: #ffffff;
+
+  --color-text: #ffffff;
+  --color-text-muted: #ffffff;
+  --color-text-on-navy: #ffffff;
+
+  --color-accent: #ffd400;
+  --color-accent-hover: #ffe14d;
+  --color-focus: #ffd400;
+
+  --color-risk-low: #00e676;
+  --color-risk-low-bg: #000000;
+  --color-risk-moderate: #ffd400;
+  --color-risk-moderate-bg: #000000;
+  --color-risk-high: #ff4d4d;
+  --color-risk-high-bg: #000000;
+
+  --stripe-saffron: #ffd400;
+  --stripe-white: #ffffff;
+  --stripe-green: #00e676;
+
+  --shadow-card: 0 0 0 1px #ffffff;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-theme="hc"] * {
+  border-color: var(--color-border) !important;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: white;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 6px;
+}
+
+.tricolor-stripe {
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    var(--stripe-saffron) 0%,
+    var(--stripe-saffron) 33.33%,
+    var(--stripe-white) 33.33%,
+    var(--stripe-white) 66.66%,
+    var(--stripe-green) 66.66%,
+    var(--stripe-green) 100%
+  );
+  flex-shrink: 0;
+}
+
+/* Leaflet overrides to fit theme */
+.leaflet-container {
+  background: var(--color-bg);
+  font-family: inherit;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+.leaflet-control-zoom a {
+  background: var(--color-surface) !important;
+  color: var(--color-text) !important;
+  border-color: var(--color-border) !important;
+}
+.leaflet-control-attribution {
+  background: color-mix(in srgb, var(--color-surface) 85%, transparent) !important;
+  color: var(--color-text-muted) !important;
+}
+
+/* Range slider theming */
+input[type="range"] {
+  accent-color: var(--color-accent);
+}
+
+/* Simple keyframes used sparingly (loading pulse, modal entrance) */
+@keyframes gs-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.gs-animate-in {
+  animation: gs-fade-up 0.18s ease-out;
+}
+
+@keyframes gs-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+.gs-pulse {
+  animation: gs-pulse 1.6s ease-in-out infinite;
+}

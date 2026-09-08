@@ -1,0 +1,1 @@
+1. pipeline for automated data ingestion, preprocessing, and csv buillding (for ml model data), clipping, etc etc so it can be served to frontend -- for live data
