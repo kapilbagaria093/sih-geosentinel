@@ -4,19 +4,32 @@ import { X } from "lucide-react";
 export default function Modal({ open, onClose, title, children, maxWidthClass = "max-w-md" }) {
   const dialogRef = useRef(null);
 
+  // Focus the dialog and lock body scroll only when the modal actually
+  // opens/closes — this must NOT depend on `onClose`, because parent
+  // components typically pass a fresh inline function on every render
+  // (e.g. every keystroke in a form inside the modal). If `onClose` were a
+  // dependency here, that re-render would re-run this effect and call
+  // `.focus()` again, yanking focus away from whatever input the person
+  // was typing into after every single character.
+  useEffect(() => {
+    if (!open) return;
+    dialogRef.current?.focus();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open]);
+
+  // The Escape-key handler can safely depend on `onClose` — re-registering
+  // a document listener on every render has no effect on input focus.
   useEffect(() => {
     if (!open) return;
     function onKeyDown(e) {
       if (e.key === "Escape") onClose?.();
     }
     document.addEventListener("keydown", onKeyDown);
-    dialogRef.current?.focus();
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = prevOverflow;
-    };
+    return () => document.removeEventListener("keydown", onKeyDown);
   }, [open, onClose]);
 
   if (!open) return null;
