@@ -107,9 +107,33 @@ npm run dev
 ```
 ### (iii) On a new terminal, run the following to setup and run the frontend client application: 
 ```bash
-cd geosentinel-frontend-api
+cd geosentinel-frontend-client
 npm install
 npm run dev
+```
+### (iv) Additionally to run, train or test the ML model, run the following commands in a new terminal: (these are not required to run the application, but are provided for reference) 
+```bash
+cd geosentinel-backend-api
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r ml/requirements.txt
+```
+- to train the model, run:
+```bash
+python ml/landslide/train.py \
+  --csv ml/landslide/data/sikkim_landslide_ml_dataset.csv \
+  --out ml/landslide/models/landslide_risk_model.joblib
+```
+- to predict landslides using the model, run:
+```bash
+python ml/landslide/predict.py \
+  --model ml/landslide/models/landslide_risk_model.joblib \
+  --elevation data/clipped/dem.tif \
+  --slope data/clipped/slope.tif \
+  --aspect data/clipped/aspect.tif \
+  --ndvi data/clipped/ndvi.tif \
+  --soil-moisture data/clipped/soil_moisture.tif \
+  --out-dir data/clipped/landslide_predictions
 ```
 
 ## 13. Future Scope

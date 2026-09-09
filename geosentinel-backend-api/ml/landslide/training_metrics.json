@@ -1,0 +1,13 @@
+{
+  "rows": 20000,
+  "roc_auc": 0.9750920368147259,
+  "accuracy": 0.91125,
+  "features": [
+    "elevation_m",
+    "slope_deg",
+    "aspect_sin",
+    "aspect_cos",
+    "ndvi",
+    "soil_moisture"
+  ]
+}
